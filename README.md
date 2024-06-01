@@ -6,6 +6,20 @@ Many roles are adapted from [How to secure a Linux Server with Ansible](https://
 
 `docker-playbook.yml` uses the docker role provided by [geerlingguy](https://github.com/geerlingguy/ansible-role-docker). 
 
+## Covered with the playbooks
+
+### requirements-playbook
+Creates necessary groups and sudo setups for user provided in group_vars. 
+
+### main-playbook
+1. Installs apt-packages
+2. sets up ssh 
+3. configures unattended apt security updates
+4. configures ufw firewall to only allow
+5. configures mail for alertings
+6. configures auditd
+7. configures clamav
+
 ## Running the Playbooks
 
 In my case, I connect to a user which will get its privileges escalated by ansible, thus passing the `--ask-become-pass` is necessary. However, if you directly connect to root or a user which does not need a password to escalate to root priviliges, the `--ask-become-pass` can be ommitted. 
