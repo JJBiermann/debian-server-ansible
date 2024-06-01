@@ -11,7 +11,14 @@ Many roles are adapted from [How to secure a Linux Server with Ansible](https://
 In my case, I connect to a user which will get its privileges escalated by ansible, thus passing the `--ask-become-pass` is necessary. However, if you directly connect to root or a user which does not need a password to escalate to root priviliges, the `--ask-become-pass` can be ommitted. 
 
 ```console
+ansible-playbook -i hosts --ask-become-pass -e ansible_ssh_private_key_file=</absolute/path/to/private/ssh-key> requirements-playbook.yml
+
 ansible-playbook -i hosts --ask-become-pass -e ansible_ssh_private_key_file=</absolute/path/to/private/ssh-key> main-playbook.yml
+```
+
+If also docker should be installed: 
+```console
+ansible-playbook -i hosts --ask-become-pass -e ansible_ssh_private_key_file=</absolute/path/to/private/ssh-key> docker-playbook.yml
 ```
 
 ## Prerequisites
