@@ -1,0 +1,10 @@
+- name: Docker Playbook
+  hosts: debian-server
+  remote_user: "{{ user_name }}"
+  gather_facts: yes
+  become_method: ansible.builtin.sudo
+  become: true
+  vars_files: ./group_vars/variables.yml
+
+  roles: 
+    - geerlingguy.docker 

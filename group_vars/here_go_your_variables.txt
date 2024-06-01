@@ -1,0 +1,9 @@
+MUST BE IN YAML
+
+ssh_port: #port number for ssh
+mail_to: #the mail address where mails should be sent to
+mail_from: #the mail address where mails are sent from 
+mail_smtp_server: #mail server, e.g. smtp.gmail.com
+mail_pw: #password for the mail_from mail address
+mail_port: #the port where mails are sent to the mail server, e.g. 587
+sshpub_location: # absolute path to public-key 

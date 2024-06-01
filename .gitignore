@@ -1,0 +1,3 @@
+group_vars/variables.yml
+.vscode/
+hosts.ini

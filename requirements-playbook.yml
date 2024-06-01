@@ -1,0 +1,8 @@
+    - name: Requirements-Playbook
+      hosts: debian-server
+      remote_user: justice
+      become_method: ansible.builtin.sudo
+      vars_files: ./group_vars/variables.yml
+
+      roles:
+        - requirements

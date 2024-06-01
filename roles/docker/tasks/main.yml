@@ -1,0 +1,37 @@
+# source: https://blog.ianpreston.ca/posts/2023-06-04-rootless-docker.html
+- name: install docker pre-requisites
+  ansible.builtin.apt:
+    pkg:
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      # Necessary for rootless installer
+      - uidmap
+      - dbus-user-session
+      - fuse-overlayfs
+      - slirp4netns
+
+- name: add docker gpg key
+  ansible.builtin.shell: |
+    install -m 0755 -d /etc/apt/keyrings && \
+    sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc && \
+    chmod a+r /etc/apt/keyrings/docker.gpg
+  args:
+    creates: "/etc/apt/keyrings/docker.gpg"
+
+- name: add docker repository to apt
+  apt_repository:
+    repo: "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Install docker
+  ansible.builtin.apt:
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+
+
+  
